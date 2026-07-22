@@ -4,7 +4,7 @@ from unsloth import FastVisionModel, get_chat_template
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Inference Demo for Fine-Tuned Gemma 4")
-    parser.add_argument("--base_model", type=str, default="unsloth/gemma-4-e4b-bnb-4bit", help="Base model name")
+    parser.add_argument("--base_model", type=str, default="unsloth/gemma-4-E4B-unsloth-bnb-4bit", help="Base model name")
     parser.add_argument("--adapter_dir", type=str, default="gemma-4-latex-demo", help="Directory where the fine-tuned adapter is saved")
     parser.add_argument("--dataset_name", type=str, default="unsloth/LaTeX_OCR", help="Dataset to fetch a test sample from")
     return parser.parse_args()

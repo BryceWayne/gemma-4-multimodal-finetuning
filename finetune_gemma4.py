@@ -7,7 +7,7 @@ from trl import SFTTrainer, SFTConfig
 
 def parse_args():
     parser = argparse.ArgumentParser(description="General Pipeline for Fine-Tuning Gemma 4 with Unsloth")
-    parser.add_argument("--model_name", type=str, default="unsloth/gemma-4-e4b-bnb-4bit", help="Model name or path")
+    parser.add_argument("--model_name", type=str, default="unsloth/gemma-4-E4B-unsloth-bnb-4bit", help="Model name or path")
     parser.add_argument("--dataset_name", type=str, default="unsloth/LaTeX_OCR", help="Hugging Face dataset name")
     parser.add_argument("--dataset_split", type=str, default="train", help="Dataset split to use")
     parser.add_argument("--modality", type=str, choices=["text", "vision"], default="vision", help="Fine-tuning modality")

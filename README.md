@@ -20,10 +20,19 @@ source .venv/bin/activate
 uv pip install unsloth trl peft transformers datasets bitsandbytes
 ```
 
+### Authentication (Gated Models)
+Since Google's Gemma 4 models are gated on Hugging Face, you must accept their Terms of Service and authenticate before downloading the weights.
+1. Visit the model page (e.g., [unsloth/gemma-4-E4B-unsloth-bnb-4bit](https://huggingface.co/unsloth/gemma-4-E4B-unsloth-bnb-4bit)) and accept the license.
+2. Create an Access Token in your Hugging Face settings.
+3. Authenticate locally by running:
+```bash
+uv run huggingface-cli login
+```
+
 ## How to Use the Pipeline
 
 ### Running the Canonical Demo
-We provide a 1-click execution script that acts as a canonical demonstration. It installs the required dependencies, fine-tunes a Gemma 4 Vision model (`unsloth/gemma-4-e4b-bnb-4bit`) on a LaTeX OCR task for a quick 30 steps, and runs an inference test displaying the model's generation stream alongside the ground truth.
+We provide a 1-click execution script that acts as a canonical demonstration. It installs the required dependencies, fine-tunes a Gemma 4 Vision model (`unsloth/gemma-4-E4B-unsloth-bnb-4bit`) on a LaTeX OCR task for a quick 30 steps, and runs an inference test displaying the model's generation stream alongside the ground truth.
 
 ```bash
 ./demo.sh
@@ -41,7 +50,7 @@ python finetune_gemma4.py
 
 The script is highly customizable through command-line arguments to adapt to your specific dataset and environment:
 
-- `--model_name`: The path or Hugging Face repo of the Gemma 4 model (Default: `unsloth/gemma-4-e4b-bnb-4bit`).
+- `--model_name`: The path or Hugging Face repo of the Gemma 4 model (Default: `unsloth/gemma-4-E4B-unsloth-bnb-4bit`).
 - `--dataset_name`: Hugging Face dataset to fine-tune on (Default: `unsloth/LaTeX_OCR`).
 - `--modality`: Select the modality to fine-tune. Options are `text` or `vision` (Default: `vision`).
 - `--max_seq_length`: Maximum sequence length (Default: `2048`).

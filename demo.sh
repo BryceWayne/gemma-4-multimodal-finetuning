@@ -29,7 +29,7 @@ echo "Dependencies installed."
 echo "[2/4] Running fine-tuning pipeline..."
 # We run a quick training of 30 steps on the canonical dataset
 python finetune_gemma4.py \
-    --model_name "unsloth/gemma-4-e4b-bnb-4bit" \
+    --model_name "unsloth/gemma-4-E4B-unsloth-bnb-4bit" \
     --dataset_name "unsloth/LaTeX_OCR" \
     --modality "vision" \
     --max_steps 30 \
