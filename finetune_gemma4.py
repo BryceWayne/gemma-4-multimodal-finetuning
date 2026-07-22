@@ -1,9 +1,24 @@
 import os
 import argparse
+import time
 from datasets import load_dataset
 from unsloth import FastLanguageModel, FastVisionModel, get_chat_template
 from unsloth.trainer import UnslothVisionDataCollator
 from trl import SFTTrainer, SFTConfig
+from transformers import TrainerCallback
+
+class TimeLimitCallback(TrainerCallback):
+    def __init__(self, time_limit_sec=300):
+        self.time_limit_sec = time_limit_sec
+        self.start_time = None
+        
+    def on_train_begin(self, args, state, control, **kwargs):
+        self.start_time = time.time()
+        
+    def on_step_end(self, args, state, control, **kwargs):
+        if self.start_time and (time.time() - self.start_time >= self.time_limit_sec):
+            print(f"\n[TimeLimitCallback] Reached {self.time_limit_sec} seconds budget. Stopping training!")
+            control.should_training_stop = True
 
 def parse_args():
     parser = argparse.ArgumentParser(description="General Pipeline for Fine-Tuning Gemma 4 with Unsloth")
@@ -144,7 +159,8 @@ def main():
         train_dataset = converted_dataset,
         processing_class = tokenizer,
         data_collator = data_collator,
-        args = training_args
+        args = training_args,
+        callbacks=[TimeLimitCallback(time_limit_sec=300)]
     )
 
     print("Starting training...")
