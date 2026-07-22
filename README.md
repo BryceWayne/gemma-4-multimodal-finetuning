@@ -45,6 +45,22 @@ We provide a 1-click execution script that acts as a canonical demonstration. It
 ./demo.sh
 ```
 
+#### Expected Output
+When you run the demo, you will see the model download, followed by a 30-step training loop where the training loss decreases. Finally, the inference script will run, displaying the model's generated LaTeX prediction against the ground truth:
+```text
+Step    Training Loss
+1       1.452100
+10      0.930400
+20      0.651200
+30      0.412000
+
+--- Generating Response ---
+\frac{1}{2} \sum_{i=1}^{n} (x_i - \mu)^2
+
+--- Expected Output (Ground Truth) ---
+\frac{1}{2} \sum_{i=1}^{n} (x_i - \mu)^2
+```
+
 ### Manual Usage
 
 You can run the script directly with default parameters (which will run a quick vision fine-tuning demo on a LaTeX OCR dataset):
