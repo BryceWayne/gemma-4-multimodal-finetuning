@@ -29,6 +29,13 @@ Since Google's Gemma 4 models are gated on Hugging Face, you must accept their T
 uv run huggingface-cli login
 ```
 
+### Troubleshooting (Stalled Downloads)
+Unsloth utilizes experimental fast downloaders (`hf_transfer` and `Xet`), which can sometimes silently deadlock or corrupt downloads depending on your network setup. If a model download stalls without a progress bar, run the following to enforce stable HTTP downloads:
+```bash
+export HF_HUB_ENABLE_HF_TRANSFER=0
+export HF_HUB_DISABLE_XET=1
+```
+
 ## How to Use the Pipeline
 
 ### Running the Canonical Demo
