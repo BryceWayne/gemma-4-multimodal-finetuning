@@ -30,6 +30,7 @@ echo "[2/4] Running fine-tuning pipeline..."
 # Disable hf_transfer and xet to prevent silent download hangs or partial corruptions
 export HF_HUB_ENABLE_HF_TRANSFER=0
 export HF_HUB_DISABLE_XET=1
+uv pip uninstall -y hf-transfer hf-xet
 
 # We run a quick training of 30 steps on the canonical dataset
 python finetune_gemma4.py \
