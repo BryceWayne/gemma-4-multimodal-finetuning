@@ -26,7 +26,7 @@ Since Google's Gemma 4 models are gated on Hugging Face, you must accept their T
 2. Create an Access Token in your Hugging Face settings.
 3. Authenticate locally by running:
 ```bash
-uv run huggingface-cli login
+uv run hf auth login
 ```
 
 ### Troubleshooting (Stalled Downloads)
