@@ -32,6 +32,9 @@ export HF_HUB_ENABLE_HF_TRANSFER=0
 export HF_HUB_DISABLE_XET=1
 uv pip uninstall -y hf-transfer hf-xet
 
+echo "Pre-caching model to bypass Unsloth's buggy downloaders..."
+uv run huggingface-cli download unsloth/gemma-4-E4B-unsloth-bnb-4bit
+
 # We run a quick training of 30 steps on the canonical dataset
 python finetune_gemma4.py \
     --model_name "unsloth/gemma-4-E4B-unsloth-bnb-4bit" \
