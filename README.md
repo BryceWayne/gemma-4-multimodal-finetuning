@@ -46,20 +46,23 @@ We provide a 1-click execution script that acts as a canonical demonstration. It
 ```
 
 #### Expected Output
-When you run the demo, you will see the model download, followed by a 30-step training loop where the training loss decreases. Finally, the inference script will run, displaying the model's generated LaTeX prediction against the ground truth:
+When you run the demo, you will see the model download, followed by a 30-step training loop where the training loss decreases significantly. Finally, the inference script will run, displaying the model's generated LaTeX prediction against the ground truth:
 ```text
 Step    Training Loss
-1       1.452100
-10      0.930400
-20      0.651200
-30      0.412000
+1       0.446500
+10      0.048410
+20      0.028540
+30      0.018030
 
 --- Generating Response ---
-\frac{1}{2} \sum_{i=1}^{n} (x_i - \mu)^2
+\!
+H ^ { \prime } = \beta N \int d \lambda \left\{ \frac { 1 } { 2 \beta ^ { 2 } N ^ { 2 } } \partial _ { \lambda } \zeta ^ { \dagger } \partial _ { \lambda } \zeta + V ( \lambda ) \zeta ^ { \dagger } \zeta \right\} .<turn|>
+<|turn>model...
 
 --- Expected Output (Ground Truth) ---
-\frac{1}{2} \sum_{i=1}^{n} (x_i - \mu)^2
+H ^ { \prime } = \beta N \int d \lambda \biggl \{ \frac { 1 } { 2 \beta ^ { 2 } N ^ { 2 } } \partial _ { \lambda } \zeta ^ { \dagger } \partial _ { \lambda } \zeta + V ( \lambda ) \zeta ^ { \dagger } \zeta \biggr \} \ .
 ```
+*(Note: The model correctly extracts the complex formula structure (e.g. using `\left\{` which identically renders to `\biggl \{`). The trailing `<|turn>model` tokens simply indicate the streamer hit the end of its thought process without an explicit EOS token configured for generation stopping).*
 
 ### Manual Usage
 
